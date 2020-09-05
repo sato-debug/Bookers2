@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   get "home/about" => "homes#about"
   devise_for :users
 
-  resources :books, only: [:edit, :create, :index, :show, :destroy, :update]
+
   resources :users, only: [:show, :edit, :update, :index]
+  resources :books do
+  	resources :book_comments, only: [:create, :destroy]
+  	resource :favorites, only: [:create, :destroy]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
