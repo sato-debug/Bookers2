@@ -9,9 +9,19 @@ class UsersController < ApplicationController
     @book = Book.new
   end
 
-  def show
+  def followings
     @user = User.find(params[:id])
-    @books = @user.books
+    @users = @user.followings.all
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers.all
+  end
+
+  def show
+    @user_find = User.find(params[:id])
+    @books = @user_find.books
     @book = Book.new
   end
 

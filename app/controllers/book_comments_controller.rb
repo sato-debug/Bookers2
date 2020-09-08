@@ -4,14 +4,9 @@ class BookCommentsController < ApplicationController
 	    comment = current_user.book_comments.new(book_comment_params)
 	    comment.book_id = book_find.id
 	    if comment.save
-	      redirect_to book_path(book_find)
-	    else
-	      @book_find = Book.find(params[:book_id])
-    	  @book = Book.new
-	      @user = book_find.user
-	      @book_comment = BookComment.new
-	      render 'books/show'
+	      flash[:success] = "Comment was successfully created."
 	    end
+	    redirect_to book_path(book_find)
 	end
 
 	def destroy
